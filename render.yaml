@@ -1,0 +1,48 @@
+# Render Deployment Blueprint for NEXUS Monorepo
+services:
+  # ─── 1. Backend Web Service (Node.js + Express + Socket.IO) ───
+  - type: web
+    name: nexus-server
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build:server
+    startCommand: npm run start --workspace=server
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 15m
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: 7d
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: AI_PROVIDER
+        value: gemini
+      - key: FRONTEND_URL
+        sync: false
+
+  # ─── 2. Frontend Static Site (React + Vite SPA) ───────────────
+  - type: web
+    name: nexus-web
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build:web
+    staticPublishPath: apps/web/dist
+    autoDeploy: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+      - key: VITE_SOCKET_URL
+        sync: false

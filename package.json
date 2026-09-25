@@ -1,0 +1,27 @@
+{
+  "name": "nexus-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NEXUS — AI Personal Intelligence & Planning System",
+  "workspaces": [
+    "server",
+    "apps/web",
+    "apps/desktop",
+    "workers/notification-worker"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,WEB,WORKER\" -c \"blue,green,magenta\" \"npm run dev:server\" \"npm run dev:web\" \"npm run dev:worker\"",
+    "dev:server": "npm --workspace=server run dev",
+    "dev:web": "npm --workspace=apps/web run dev",
+    "dev:worker": "npm --workspace=workers/notification-worker run dev",
+    "dev:desktop": "npm --workspace=apps/desktop run dev",
+    "build": "npm --workspace=server run build && npm --workspace=apps/web run build && npm --workspace=workers/notification-worker run build",
+    "build:server": "npm --workspace=server run build",
+    "build:web": "npm --workspace=apps/web run build",
+    "build:desktop": "npm --workspace=apps/desktop run build",
+    "seed": "npm --workspace=server run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
