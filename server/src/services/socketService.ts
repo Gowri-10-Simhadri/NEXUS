@@ -1,6 +1,6 @@
 import { Server as HttpServer } from 'http';
 import { Server as SocketIOServer, Socket } from 'socket.io';
-import { config, getAllowedOrigins } from '../config/env.js';
+import { config, isOriginAllowed } from '../config/env.js';
 import { verifyAccessToken } from '../utils/jwt.js';
 import { NotificationDevice } from '../models/NotificationDevice.js';
 
@@ -9,7 +9,13 @@ let ioInstance: SocketIOServer | null = null;
 export function initSocketServer(httpServer: HttpServer): SocketIOServer {
   const io = new SocketIOServer(httpServer, {
     cors: {
-      origin: getAllowedOrigins() as any,
+      origin: (origin, callback) => {
+        if (isOriginAllowed(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('CORS not allowed for Socket.IO'));
+        }
+      },
       methods: ['GET', 'POST'],
       credentials: true,
     },

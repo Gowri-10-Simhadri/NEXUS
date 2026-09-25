@@ -42,21 +42,55 @@ export const config = {
   desktopSecret: process.env.DESKTOP_APP_SECRET || 'nexus_desktop_agent_shared_secret_2026',
 };
 
-export function getAllowedOrigins(): (string | RegExp)[] | boolean {
+export function isOriginAllowed(origin?: string): boolean {
+  if (!origin) return true; // Server-to-server, Electron desktop agent, Postman, curl
+
+  const cleanOrigin = origin.replace(/\/+$/, '').toLowerCase();
+
   if (config.frontendUrl === '*') return true;
-  const list: (string | RegExp)[] = [
+
+  const knownOrigins = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'https://nexus-web-nine-eta.vercel.app',
   ];
+
   if (config.frontendUrl) {
-    config.frontendUrl.split(',').forEach((url) => {
-      const trimmed = url.trim();
-      if (trimmed && !list.includes(trimmed)) {
-        list.push(trimmed);
+    config.frontendUrl.split(',').forEach((u) => {
+      const cleaned = u.trim().replace(/\/+$/, '').toLowerCase();
+      if (cleaned && !knownOrigins.includes(cleaned)) {
+        knownOrigins.push(cleaned);
       }
     });
   }
-  return list;
+
+  if (knownOrigins.includes(cleanOrigin)) return true;
+
+  // Allow Vercel preview deployments (*.vercel.app) and Render domains
+  try {
+    const parsed = new URL(origin);
+    const hostname = parsed.hostname.toLowerCase();
+    if (hostname.endsWith('.vercel.app') || hostname.endsWith('.onrender.com')) {
+      return true;
+    }
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return true;
+    }
+  } catch {}
+
+  return false;
+}
+
+export function getAllowedOrigins(): (string | RegExp)[] | boolean {
+  return [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://nexus-web-nine-eta.vercel.app',
+    /\.vercel\.app$/,
+    /\.onrender\.com$/,
+  ];
 }

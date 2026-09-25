@@ -2,8 +2,14 @@ import axios from 'axios';
 
 const getBaseUrl = () => {
   const envUrl = import.meta.env.VITE_API_URL;
-  if (!envUrl) return '/api';
-  return envUrl.endsWith('/api') ? envUrl : `${envUrl.replace(/\/+$/, '')}/api`;
+  if (envUrl) {
+    return envUrl.endsWith('/api') ? envUrl : `${envUrl.replace(/\/+$/, '')}/api`;
+  }
+  // If running in production / remote browser environment, point to Render backend
+  if (import.meta.env.PROD || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
+    return 'https://nexus-k2uq.onrender.com/api';
+  }
+  return '/api';
 };
 
 const api = axios.create({
@@ -27,7 +33,12 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    const url = originalRequest?.url || '';
+
+    // Do not attempt refresh on auth endpoints (login, register, refresh)
+    const isAuthEndpoint = url.includes('/auth/login') || url.includes('/auth/register') || url.includes('/auth/refresh');
+
+    if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
       originalRequest._retry = true;
       const refreshToken = localStorage.getItem('nexus_refresh_token');
 
@@ -42,12 +53,14 @@ api.interceptors.response.use(
         } catch (refreshErr) {
           localStorage.removeItem('nexus_access_token');
           localStorage.removeItem('nexus_refresh_token');
-          window.location.href = '/login';
+          if (typeof window !== 'undefined' && window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
+            window.location.href = '/login';
+          }
         }
       } else {
         localStorage.removeItem('nexus_access_token');
         localStorage.removeItem('nexus_refresh_token');
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
+        if (typeof window !== 'undefined' && window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
           window.location.href = '/login';
         }
       }

@@ -37,10 +37,16 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
   initSocket: (token: string) => {
     if (get().socket) return;
 
-    const rawApiUrl = import.meta.env.VITE_API_URL || '';
-    const socketOrigin = import.meta.env.VITE_SOCKET_URL || (rawApiUrl ? rawApiUrl.replace(/\/api\/?$/, '') : undefined);
+    const getSocketOrigin = () => {
+      if (import.meta.env.VITE_SOCKET_URL) return import.meta.env.VITE_SOCKET_URL;
+      if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
+      if (import.meta.env.PROD || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
+        return 'https://nexus-k2uq.onrender.com';
+      }
+      return undefined;
+    };
 
-    const socket = io(socketOrigin, {
+    const socket = io(getSocketOrigin(), {
       auth: { token },
       transports: ['websocket', 'polling'],
     });

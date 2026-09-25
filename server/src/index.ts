@@ -3,7 +3,7 @@ import http from 'http';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { config, getAllowedOrigins } from './config/env.js';
+import { config, isOriginAllowed } from './config/env.js';
 import { connectDB } from './config/db.js';
 import { initSocketServer } from './services/socketService.js';
 import apiRouter from './routes/index.js';
@@ -22,13 +22,25 @@ async function bootstrap() {
 
   // 3. Security & Middleware
   app.use(helmet({ crossOriginResourcePolicy: false }));
-  app.use(
-    cors({
-      origin: getAllowedOrigins() as any,
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    })
-  );
+  
+  const corsOptions = {
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+      if (isOriginAllowed(origin)) {
+        callback(null, true);
+      } else {
+        console.warn(`[CORS Blocked] Origin: ${origin}`);
+        callback(null, false);
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+    exposedHeaders: ['Set-Cookie', 'Authorization'],
+  };
+
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
+
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
