@@ -1,9 +1,26 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Shield, Bell, Brain, ArrowRight, CheckCircle2, Clock, AlertTriangle, ChevronRight } from 'lucide-react';
+import { TextAnimationCollection } from '@designcodeio/threeui';
+import '@designcodeio/threeui/style.css';
+import { FoldText } from '../components/ui/FoldText.js';
 import { GlassButton } from '../components/ui/GlassButton.js';
 import { GlassCard } from '../components/ui/GlassCard.js';
 import { NexusLogo } from '../components/ui/NexusLogo.js';
+
+export function Scene() {
+  return (
+    <div className="shader-frame">
+      <TextAnimationCollection
+        variant="threeui-intro"
+        mode="dark"
+        hue={0}
+        saturation={1.00}
+        brightness={1.00}
+      />
+    </div>
+  );
+}
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -27,25 +44,45 @@ export const LandingPage: React.FC = () => {
       </header>
 
       {/* Hero Section */}
-      <main className="max-w-6xl mx-auto px-6 py-16 sm:py-24 space-y-20">
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
+      <main className="max-w-6xl mx-auto px-6 py-10 sm:py-16 space-y-16">
+        <div className="text-center space-y-6 max-w-4xl mx-auto flex flex-col items-center">
+          {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-violet/15 border border-accent-violet/30 text-accent-violet text-xs font-semibold tracking-wide">
             <Sparkles className="w-4 h-4" />
             <span>AI Personal Intelligence & Planning System</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-display font-extrabold tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-            Don't just remember what to do. <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-violet via-accent-purple to-accent-cyan">
-              Know when you need to act.
-            </span>
-          </h1>
+          {/* 1. Main Project Title: ThreeUI TextAnimationCollection */}
+          <div className="w-full flex flex-col items-center justify-center">
+            <Scene />
+          </div>
 
-          <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
+          {/* 2. Animated Text Below NEXUS: FoldText */}
+          <div className="w-full flex justify-center py-2">
+            <FoldText
+              text="Connect. Discover. Innovate."
+              splitBy="char"
+              hinge="top"
+              trigger="mount"
+              duration={0.65}
+              stagger={0.045}
+              ease="power3.out"
+              perspective={700}
+              creaseShading={0.55}
+              fontSize="clamp(1.8rem, 5vw, 3.6rem)"
+              fontWeight={700}
+              color="#f7f2e8"
+              className="fold-text-nexus"
+            />
+          </div>
+
+          {/* Supporting Description */}
+          <p className="text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-2xl mx-auto font-normal">
             NEXUS proactively connects your goals, deadlines, calendar events, documents, and decisions. It anticipates workload crunches and alerts you natively on Windows—even when the website is closed.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 w-full">
             <GlassButton
               onClick={() => navigate('/register')}
               size="lg"

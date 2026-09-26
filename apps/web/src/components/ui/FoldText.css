@@ -1,0 +1,75 @@
+.fold-text {
+  display: inline-block;
+  font-size: var(--fold-text-font-size, clamp(1.6rem, 4vw, 3.2rem));
+  font-weight: var(--fold-text-font-weight, 700);
+  color: var(--fold-text-color, #f7f2e8);
+  line-height: 1.2;
+  user-select: none;
+  letter-spacing: -0.015em;
+}
+
+.fold-text-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fold-text-visual {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.fold-text-line {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.fold-text-segment {
+  display: inline-block;
+  perspective: var(--fold-perspective, 700px);
+  transform-style: preserve-3d;
+  vertical-align: middle;
+}
+
+.fold-text-piece {
+  display: inline-block;
+  position: relative;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.fold-text-piece::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: var(--fold-crease, 0);
+  transition: opacity 0.1s ease;
+  border-radius: inherit;
+}
+
+.fold-text-whitespace {
+  display: inline-block;
+  white-space: pre;
+}
+
+/* Tasteful NEXUS-themed modern color styling */
+.fold-text-nexus .fold-text-piece {
+  background: linear-gradient(135deg, #7dd3fc 0%, #a78bfa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 14px rgba(167, 139, 250, 0.25));
+}
