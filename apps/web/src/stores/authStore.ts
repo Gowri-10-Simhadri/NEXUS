@@ -19,7 +19,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   isAuthenticated: !!localStorage.getItem('nexus_access_token'),
   isLoading: true,
-  theme: (localStorage.getItem('nexus_theme') as 'dark' | 'light') || 'dark',
+  theme: (localStorage.getItem('nexus_theme') as 'dark' | 'light') || 'light',
 
   setTheme: (theme: 'dark' | 'light') => {
     localStorage.setItem('nexus_theme', theme);

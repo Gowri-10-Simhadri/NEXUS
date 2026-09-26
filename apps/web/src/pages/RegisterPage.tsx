@@ -36,19 +36,19 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-nexus-950 text-slate-100 ambient-glow-mesh flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-nexus-950 text-slate-800 dark:text-slate-100 ambient-glow-mesh flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="flex flex-col items-center text-center space-y-2">
           <NexusLogo size="xl" />
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Create your account
           </p>
         </div>
 
-        <GlassCard className="p-6 sm:p-8 space-y-6">
+        <GlassCard className="p-6 sm:p-8 space-y-6 shadow-md">
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
-              <div className="p-3 rounded-xl bg-accent-rose/10 border border-accent-rose/20 text-accent-rose text-xs font-medium">
+              <div className="p-3 rounded-xl bg-rose-50 dark:bg-accent-rose/10 border border-rose-200 dark:border-accent-rose/20 text-rose-600 dark:text-accent-rose text-xs font-medium">
                 {error}
               </div>
             )}
@@ -85,11 +85,11 @@ export const RegisterPage: React.FC = () => {
             />
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">Profile Type</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Profile Type</label>
               <select
                 value={profileType}
                 onChange={(e) => setProfileType(e.target.value)}
-                className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent-violet/50"
+                className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50"
               >
                 <option value="developer">Developer / Engineer</option>
                 <option value="student">Student / Researcher</option>
@@ -111,9 +111,9 @@ export const RegisterPage: React.FC = () => {
             </GlassButton>
           </form>
 
-          <div className="pt-2 text-center text-xs text-slate-400 border-t border-white/10">
+          <div className="pt-2 text-center text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-white/10">
             Already have an account?{' '}
-            <Link to="/login" className="text-accent-violet font-semibold hover:underline">
+            <Link to="/login" className="text-violet-600 dark:text-accent-violet font-semibold hover:underline">
               Sign In
             </Link>
           </div>

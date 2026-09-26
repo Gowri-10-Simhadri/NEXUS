@@ -15,7 +15,7 @@ export const BottomNav: React.FC = () => {
   ];
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-nexus-900/90 light:bg-white/90 backdrop-blur-2xl border-t border-white/[0.08] light:border-black/[0.08] px-2 py-1 shadow-2xl">
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-nexus-900/90 backdrop-blur-2xl border-t border-slate-200/80 dark:border-white/[0.08] px-2 py-1 shadow-2xl">
       <div className="flex items-center justify-around">
         {navItems.map((item) => (
           <NavLink
@@ -27,7 +27,7 @@ export const BottomNav: React.FC = () => {
                   ? '-translate-y-2 bg-gradient-to-tr from-accent-violet to-accent-cyan text-white p-3 rounded-full shadow-lg shadow-accent-violet/40'
                   : isActive
                   ? 'text-accent-violet font-bold'
-                  : 'text-slate-400 light:text-slate-500'
+                  : 'text-slate-500 dark:text-slate-400'
               }`
             }
           >

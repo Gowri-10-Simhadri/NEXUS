@@ -15,15 +15,15 @@ export const NexusLogo: React.FC<NexusLogoProps> = ({
     sm: { icon: 'w-6 h-6', text: 'text-base', sub: 'text-[9px]' },
     md: { icon: 'w-8 h-8', text: 'text-lg', sub: 'text-[10px]' },
     lg: { icon: 'w-10 h-10', text: 'text-xl', sub: 'text-xs' },
-    xl: { icon: 'w-12 h-12', text: 'text-2xl', sub: 'text-xs' },
+    xl: { icon: 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20', text: 'text-2xl', sub: 'text-xs' },
   };
 
-  const { icon, text, sub } = sizeMap[size];
+  const { icon, text } = sizeMap[size];
 
   return (
     <div className={`flex items-center gap-2.5 select-none ${className}`}>
       {/* Dynamic Animated Vector Emblem */}
-      <div className={`relative ${icon} shrink-0`}>
+      <div className={`relative ${icon} shrink-0 aspect-square`}>
         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_0_12px_rgba(139,92,246,0.5)]">
           <defs>
             <linearGradient id="logoG1" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">

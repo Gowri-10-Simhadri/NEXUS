@@ -19,7 +19,7 @@ export const GlassBadge: React.FC<GlassBadgeProps> = ({
     emerald: 'bg-accent-emerald/15 text-accent-emerald border-accent-emerald/30',
     amber: 'bg-accent-amber/15 text-accent-amber border-accent-amber/30',
     rose: 'bg-accent-rose/15 text-accent-rose border-accent-rose/30',
-    neutral: 'bg-white/10 light:bg-black/10 text-slate-300 light:text-slate-700 border-white/15 light:border-black/15',
+    neutral: 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-white/15',
   };
 
   const sizeClasses = {

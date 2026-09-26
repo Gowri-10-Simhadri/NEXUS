@@ -44,12 +44,12 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-nexus-950 text-slate-100 ambient-glow-mesh flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-nexus-950 text-slate-800 dark:text-slate-100 ambient-glow-mesh flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Brand */}
         <div className="flex flex-col items-center text-center space-y-2">
           <NexusLogo size="xl" />
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Sign in to your account
           </p>
         </div>
@@ -57,20 +57,20 @@ export const LoginPage: React.FC = () => {
         {/* Demo Fast Login Callout */}
         <div
           onClick={handleDemoFill}
-          className="p-3.5 rounded-2xl bg-accent-violet/10 border border-accent-violet/30 flex items-center justify-between cursor-pointer hover:bg-accent-violet/15 transition-all text-xs"
+          className="p-3.5 rounded-2xl bg-violet-50 dark:bg-accent-violet/10 border border-violet-200 dark:border-accent-violet/30 flex items-center justify-between cursor-pointer hover:bg-violet-100/70 dark:hover:bg-accent-violet/15 transition-all text-xs shadow-sm"
         >
-          <div className="flex items-center gap-2 text-accent-violet font-semibold">
-            <Sparkles className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-violet-700 dark:text-accent-violet font-semibold">
+            <Sparkles className="w-4 h-4 text-violet-600" />
             <span>Use Pre-loaded Demo Account (Flagship Scenario)</span>
           </div>
-          <ArrowRight className="w-4 h-4 text-accent-violet" />
+          <ArrowRight className="w-4 h-4 text-violet-600 dark:text-accent-violet" />
         </div>
 
         {/* Form Card */}
-        <GlassCard className="p-6 sm:p-8 space-y-6">
+        <GlassCard className="p-6 sm:p-8 space-y-6 shadow-md">
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
-              <div className="p-3 rounded-xl bg-accent-rose/10 border border-accent-rose/20 text-accent-rose text-xs font-medium">
+              <div className="p-3 rounded-xl bg-rose-50 dark:bg-accent-rose/10 border border-rose-200 dark:border-accent-rose/20 text-rose-600 dark:text-accent-rose text-xs font-medium">
                 {error}
               </div>
             )}
@@ -106,9 +106,9 @@ export const LoginPage: React.FC = () => {
             </GlassButton>
           </form>
 
-          <div className="pt-2 text-center text-xs text-slate-400 border-t border-white/10">
+          <div className="pt-2 text-center text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-white/10">
             Don't have an account?{' '}
-            <Link to="/register" className="text-accent-violet font-semibold hover:underline">
+            <Link to="/register" className="text-violet-600 dark:text-accent-violet font-semibold hover:underline">
               Create one now
             </Link>
           </div>

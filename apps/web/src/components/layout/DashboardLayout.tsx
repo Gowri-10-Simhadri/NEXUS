@@ -22,7 +22,7 @@ export const DashboardLayout: React.FC = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-nexus-950 text-slate-100 ambient-glow-mesh">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-slate-50 dark:bg-nexus-950 text-slate-800 dark:text-slate-100 ambient-glow-mesh">
       {/* Desktop Sidebar */}
       <Sidebar />
 

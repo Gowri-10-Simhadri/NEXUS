@@ -32,11 +32,11 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
     cyan:
       'bg-gradient-to-r from-accent-cyan to-blue-600 text-white shadow-lg shadow-accent-cyan/25 hover:shadow-accent-cyan/40 hover:opacity-95 border border-white/10 active:scale-[0.98]',
     secondary:
-      'bg-nexus-700/60 dark:bg-nexus-700/60 light:bg-slate-200/80 text-slate-100 light:text-slate-800 border border-white/10 light:border-black/10 hover:bg-nexus-600/70 active:scale-[0.98]',
+      'bg-slate-100 dark:bg-nexus-700/60 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-white/10 hover:bg-slate-200/80 dark:hover:bg-nexus-600/70 active:scale-[0.98]',
     ghost:
-      'bg-transparent text-slate-300 light:text-slate-600 hover:bg-white/[0.06] light:hover:bg-black/[0.06] active:scale-[0.98]',
+      'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.06] active:scale-[0.98]',
     danger:
-      'bg-accent-rose/20 text-accent-rose border border-accent-rose/30 hover:bg-accent-rose/30 active:scale-[0.98]',
+      'bg-rose-50 dark:bg-accent-rose/20 text-rose-600 dark:text-accent-rose border border-rose-200 dark:border-accent-rose/30 hover:bg-rose-100 dark:hover:bg-accent-rose/30 active:scale-[0.98]',
   };
 
   return (
