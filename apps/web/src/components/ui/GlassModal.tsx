@@ -44,23 +44,23 @@ export const GlassModal: React.FC<GlassModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-nexus-950/80 backdrop-blur-md transition-opacity animate-fadeIn"
+        className="fixed inset-0 bg-slate-900/60 dark:bg-nexus-950/80 backdrop-blur-md transition-opacity animate-fadeIn"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${maxWidthClasses[maxWidth]} rounded-3xl bg-nexus-900/90 light:bg-white/95 backdrop-blur-2xl border border-white/10 light:border-black/10 shadow-2xl p-6 sm:p-8 z-10 animate-scaleUp`}
+        className={`relative w-full ${maxWidthClasses[maxWidth]} rounded-3xl bg-white dark:bg-nexus-900/95 backdrop-blur-2xl border border-slate-200 dark:border-white/10 shadow-2xl p-6 sm:p-8 z-10 animate-scaleUp`}
       >
-        <div className="flex items-center justify-between pb-4 border-b border-white/10 light:border-black/10 mb-6">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 mb-6">
           {title && (
-            <h3 className="text-lg font-bold text-slate-100 light:text-slate-900 font-display">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 font-display">
               {title}
             </h3>
           )}
           <button
             onClick={onClose}
-            className="rounded-xl p-1.5 text-slate-400 hover:text-slate-100 hover:bg-white/10 transition-colors ml-auto"
+            className="rounded-xl p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors ml-auto"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />

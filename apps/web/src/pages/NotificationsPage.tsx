@@ -25,8 +25,8 @@ export const NotificationsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold font-display text-slate-100">Notification Center</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">Notification Center</h2>
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Intelligent alerts with explainable reasoning and instant actionable options
           </p>
         </div>
@@ -43,10 +43,10 @@ export const NotificationsPage: React.FC = () => {
 
       <div className="space-y-4">
         {notifications.length === 0 ? (
-          <GlassCard className="p-12 text-center text-xs text-slate-400 space-y-2">
-            <Bell className="w-8 h-8 text-slate-500 mx-auto" />
-            <p className="font-semibold text-slate-300">All notifications cleared!</p>
-            <p>NEXUS is quietly monitoring your projects and will alert you if any conflicts arise.</p>
+          <GlassCard className="p-12 text-center text-xs text-slate-500 space-y-2">
+            <Bell className="w-8 h-8 text-slate-400 mx-auto" />
+            <p className="font-semibold text-slate-800 dark:text-slate-300">All notifications cleared!</p>
+            <p className="text-slate-500 dark:text-slate-400">NEXUS is quietly monitoring your projects and will alert you if any conflicts arise.</p>
           </GlassCard>
         ) : (
           notifications.map((notif) => (
@@ -54,27 +54,27 @@ export const NotificationsPage: React.FC = () => {
               key={notif._id}
               className={`p-5 space-y-4 border ${
                 notif.status === 'unread'
-                  ? 'border-accent-violet/40 bg-nexus-800/80'
-                  : 'border-white/[0.08]'
-              }`}
+                  ? 'border-violet-300 dark:border-violet-500/40 bg-violet-50/40 dark:bg-nexus-800/80'
+                  : 'border-slate-200/80 dark:border-white/[0.08] bg-white/90 dark:bg-nexus-900/60'
+              } shadow-sm`}
               glow={notif.priority === 'critical' ? 'rose' : notif.priority === 'high' ? 'amber' : 'none'}
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="p-1.5 rounded-lg bg-accent-violet/20 text-accent-violet">
+                    <span className="p-1.5 rounded-lg bg-violet-100 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300">
                       {notif.type === 'conflict' ? (
-                        <AlertTriangle className="w-4 h-4 text-accent-rose" />
+                        <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-400" />
                       ) : (
-                        <Bell className="w-4 h-4 text-accent-cyan" />
+                        <Bell className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                       )}
                     </span>
-                    <h4 className="font-bold text-sm text-slate-100">{notif.title}</h4>
+                    <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">{notif.title}</h4>
                     {notif.status === 'unread' && (
-                      <span className="w-2 h-2 rounded-full bg-accent-violet" />
+                      <span className="w-2 h-2 rounded-full bg-violet-600" />
                     )}
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed max-w-3xl">
+                  <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed max-w-3xl">
                     {notif.message}
                   </p>
                 </div>
@@ -83,7 +83,7 @@ export const NotificationsPage: React.FC = () => {
                   <GlassBadge variant={notif.priority === 'critical' ? 'rose' : 'violet'}>
                     {notif.priority}
                   </GlassBadge>
-                  <span className="text-[11px] text-slate-500">
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
                     {new Date(notif.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
@@ -91,15 +91,15 @@ export const NotificationsPage: React.FC = () => {
 
               {/* Explainability Box: "Why did I get this notification?" */}
               {notif.reasons && notif.reasons.length > 0 && (
-                <div className="p-3.5 rounded-2xl bg-black/40 border border-white/10 space-y-2 text-xs">
-                  <span className="font-semibold text-slate-300 block text-[11px] uppercase tracking-wider text-accent-cyan">
+                <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-white/10 space-y-2 text-xs">
+                  <span className="font-semibold block text-[11px] uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
                     Why am I seeing this?
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-400">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-600 dark:text-slate-400">
                     {notif.reasons.map((r, i) => (
-                      <div key={i} className="flex items-center justify-between p-1.5 rounded-lg bg-white/[0.03]">
+                      <div key={i} className="flex items-center justify-between p-1.5 rounded-lg bg-white dark:bg-white/[0.03] border border-slate-200/50 dark:border-transparent">
                         <span>{r.label}:</span>
-                        <strong className="text-slate-200">{r.detail}</strong>
+                        <strong className="text-slate-800 dark:text-slate-200">{r.detail}</strong>
                       </div>
                     ))}
                   </div>
@@ -107,7 +107,7 @@ export const NotificationsPage: React.FC = () => {
               )}
 
               {/* Action Controls */}
-              <div className="flex items-center justify-between pt-2 border-t border-white/10">
+              <div className="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-white/10">
                 <div className="flex items-center gap-2">
                   {notif.actions?.map((act, i) => (
                     <GlassButton
@@ -129,17 +129,17 @@ export const NotificationsPage: React.FC = () => {
                   {notif.status === 'unread' && (
                     <button
                       onClick={() => markAsRead(notif._id)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 text-xs flex items-center gap-1 font-medium"
+                      className="p-1.5 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 text-xs flex items-center gap-1 font-medium"
                     >
                       <Check className="w-3.5 h-3.5" /> Mark Read
                     </button>
                   )}
                   <button
                     onClick={() => dismissNotification(notif._id)}
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-accent-rose hover:bg-white/10 text-xs"
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-white/10 text-xs"
                     title="Dismiss"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>

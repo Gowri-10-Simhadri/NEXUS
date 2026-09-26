@@ -4,6 +4,7 @@ interface NexusLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showWordmark?: boolean;
   className?: string;
+  darkWordmark?: boolean;
 }
 
 export const NexusLogo: React.FC<NexusLogoProps> = ({
@@ -12,19 +13,24 @@ export const NexusLogo: React.FC<NexusLogoProps> = ({
   className = '',
 }) => {
   const sizeMap = {
-    sm: { icon: 'w-6 h-6', text: 'text-base', sub: 'text-[9px]' },
-    md: { icon: 'w-8 h-8', text: 'text-lg', sub: 'text-[10px]' },
-    lg: { icon: 'w-10 h-10', text: 'text-xl', sub: 'text-xs' },
-    xl: { icon: 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20', text: 'text-2xl', sub: 'text-xs' },
+    sm: { icon: 'w-6 h-6', text: 'text-base font-extrabold tracking-widest' },
+    md: { icon: 'w-8 h-8', text: 'text-xl font-extrabold tracking-widest' },
+    lg: { icon: 'w-10 h-10', text: 'text-2xl font-extrabold tracking-wider' },
+    xl: { icon: 'w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20', text: 'text-3xl sm:text-4xl font-black tracking-tight' },
   };
 
   const { icon, text } = sizeMap[size];
 
   return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
-      {/* Dynamic Animated Vector Emblem */}
-      <div className={`relative ${icon} shrink-0 aspect-square`}>
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_0_12px_rgba(139,92,246,0.5)]">
+    <div className={`flex items-center gap-3 select-none ${className}`}>
+      {/* 1. Official NEXUS Logo Vector Emblem on the LEFT */}
+      <div className={`relative ${icon} shrink-0 aspect-square flex items-center justify-center`}>
+        <svg
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full drop-shadow-[0_4px_16px_rgba(139,92,246,0.35)]"
+        >
           <defs>
             <linearGradient id="logoG1" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#8b5cf6" />
@@ -38,11 +44,27 @@ export const NexusLogo: React.FC<NexusLogoProps> = ({
           </defs>
 
           {/* Connected Outer Energy Ring */}
-          <circle cx="24" cy="24" r="20" stroke="url(#logoG1)" strokeWidth="2" strokeDasharray="80 30" strokeLinecap="round" className="animate-spin-slow origin-center opacity-75" />
-          
+          <circle
+            cx="24"
+            cy="24"
+            r="20"
+            stroke="url(#logoG1)"
+            strokeWidth="2.5"
+            strokeDasharray="80 30"
+            strokeLinecap="round"
+            className="animate-spin-neural origin-center opacity-85"
+          />
+
           {/* Hexagonal Cognitive Vault */}
-          <path d="M24 8L38 16V32L24 40L10 32V16L24 8Z" stroke="url(#logoG1)" strokeWidth="2.5" strokeLinejoin="round" fill="#0f172a" fillOpacity="0.8" />
-          
+          <path
+            d="M24 8L38 16V32L24 40L10 32V16L24 8Z"
+            stroke="url(#logoG1)"
+            strokeWidth="2.5"
+            strokeLinejoin="round"
+            fill="#0f172a"
+            fillOpacity="0.85"
+          />
+
           {/* Synapse Lines */}
           <line x1="24" y1="14" x2="24" y2="34" stroke="url(#logoG1)" strokeWidth="2" strokeLinecap="round" />
           <line x1="15" y1="20" x2="33" y2="28" stroke="url(#logoG1)" strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
@@ -62,9 +84,14 @@ export const NexusLogo: React.FC<NexusLogoProps> = ({
         </svg>
       </div>
 
-      {/* Brand Wordmark */}
+      {/* 2. Bold, Dark High-Contrast Brand Wordmark on the RIGHT */}
       {showWordmark && (
-        <span className={`font-display font-extrabold tracking-widest ${text} bg-gradient-to-r from-white via-slate-100 to-slate-300 light:from-slate-900 light:to-slate-700 bg-clip-text text-transparent leading-none`}>
+        <span
+          className={`font-display ${text} text-slate-900 dark:text-white leading-none tracking-tight`}
+          style={{
+            letterSpacing: '0.08em',
+          }}
+        >
           NEXUS
         </span>
       )}

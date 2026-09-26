@@ -104,7 +104,7 @@ export const ProjectDetailsPage: React.FC = () => {
   if (!project && !isLoading) {
     return (
       <div className="text-center py-12 space-y-4">
-        <p className="text-sm text-slate-400">Project not found.</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">Project not found.</p>
         <GlassButton onClick={() => navigate('/projects')}>Back to Projects</GlassButton>
       </div>
     );
@@ -125,7 +125,7 @@ export const ProjectDetailsPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate('/projects')}
-          className="flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Projects</span>
@@ -143,7 +143,7 @@ export const ProjectDetailsPage: React.FC = () => {
 
           <button
             onClick={() => setIsDeleteModalOpen(true)}
-            className="p-2 rounded-xl text-slate-400 hover:text-accent-rose hover:bg-white/10 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-white/10 transition-colors"
             title="Delete project"
           >
             <Trash2 className="w-4 h-4" />
@@ -153,7 +153,7 @@ export const ProjectDetailsPage: React.FC = () => {
 
       {/* Project Banner Card */}
       {project && (
-        <GlassCard className="p-6 sm:p-8 space-y-6" glow="cyan">
+        <GlassCard className="p-6 sm:p-8 space-y-6 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm" glow="cyan">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
@@ -164,16 +164,16 @@ export const ProjectDetailsPage: React.FC = () => {
                   {project.priority} priority
                 </GlassBadge>
                 {allTasksCompleted && project.status !== 'completed' && (
-                  <span className="text-xs text-accent-emerald font-semibold flex items-center gap-1 animate-pulse">
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1 animate-pulse">
                     <CheckCircle2 className="w-3.5 h-3.5" /> Ready for completion!
                   </span>
                 )}
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold font-display text-white">
+              <h1 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
                 {project.title}
               </h1>
               {project.description && (
-                <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
                   {project.description}
                 </p>
               )}
@@ -181,9 +181,9 @@ export const ProjectDetailsPage: React.FC = () => {
 
             <div className="flex flex-col sm:items-end gap-2 shrink-0">
               {project.deadline && (
-                <div className="p-3 rounded-2xl bg-black/40 border border-white/10 text-xs space-y-1">
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Target Deadline</span>
-                  <span className="text-accent-amber font-bold flex items-center gap-1.5">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-white/10 text-xs space-y-1">
+                  <span className="text-slate-500 dark:text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Target Deadline</span>
+                  <span className="text-amber-600 dark:text-amber-400 font-bold flex items-center gap-1.5">
                     <Clock className="w-4 h-4" />
                     {new Date(project.deadline).toLocaleDateString(undefined, {
                       weekday: 'long',
@@ -199,21 +199,21 @@ export const ProjectDetailsPage: React.FC = () => {
           </div>
 
           {/* Progress Bar & Task Statistics */}
-          <div className="space-y-2 pt-4 border-t border-white/10">
-            <div className="flex justify-between text-xs text-slate-300 font-medium">
+          <div className="space-y-2 pt-4 border-t border-slate-200/80 dark:border-white/10">
+            <div className="flex justify-between text-xs text-slate-700 dark:text-slate-300 font-medium">
               <span>
                 {totalCount === 0
                   ? 'No tasks created yet'
                   : `${completedCount} of ${totalCount} deliverables completed`}
               </span>
-              <span className="font-bold text-accent-cyan">{project.progress}% Complete</span>
+              <span className="font-bold text-cyan-600 dark:text-cyan-400">{project.progress}% Complete</span>
             </div>
-            <div className="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
+            <div className="w-full bg-slate-200/70 dark:bg-white/10 rounded-full h-2.5 overflow-hidden">
               <div
                 className={`h-2.5 rounded-full transition-all duration-500 ${
                   project.progress === 100
-                    ? 'bg-gradient-to-r from-accent-emerald to-accent-cyan'
-                    : 'bg-gradient-to-r from-accent-violet to-accent-cyan'
+                    ? 'bg-gradient-to-r from-emerald-500 to-cyan-500'
+                    : 'bg-gradient-to-r from-violet-600 to-cyan-500'
                 }`}
                 style={{ width: `${project.progress}%` }}
               />
@@ -226,19 +226,19 @@ export const ProjectDetailsPage: React.FC = () => {
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <h3 className="text-lg font-bold font-display flex items-center gap-2">
-              <CheckSquare className="w-5 h-5 text-accent-cyan" />
+            <h3 className="text-lg font-bold font-display text-slate-900 dark:text-slate-100 flex items-center gap-2">
+              <CheckSquare className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
               <span>Project Deliverables ({tasks.length})</span>
             </h3>
 
             {/* Filter */}
-            <div className="flex items-center gap-1 bg-nexus-900/60 p-1 rounded-xl border border-white/10 text-[11px]">
+            <div className="flex items-center gap-1 bg-slate-100 dark:bg-nexus-900/60 p-1 rounded-xl border border-slate-200 dark:border-white/10 text-[11px]">
               {(['all', 'pending', 'completed'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setTaskFilter(tab)}
                   className={`px-2.5 py-1 rounded-lg capitalize transition-colors ${
-                    taskFilter === tab ? 'bg-accent-violet text-white font-semibold' : 'text-slate-400 hover:text-white'
+                    taskFilter === tab ? 'bg-violet-600 text-white font-semibold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {tab}
@@ -256,15 +256,15 @@ export const ProjectDetailsPage: React.FC = () => {
           </GlassButton>
         </div>
 
-        <GlassCard className="p-4 divide-y divide-white/[0.08]">
+        <GlassCard className="p-4 divide-y divide-slate-200/70 dark:divide-white/[0.08] bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm">
           {filteredTasks.length === 0 ? (
-            <div className="text-center py-10 text-xs text-slate-400 space-y-3">
-              <CheckSquare className="w-8 h-8 text-slate-500 mx-auto" />
+            <div className="text-center py-10 text-xs text-slate-500 space-y-3">
+              <CheckSquare className="w-8 h-8 text-slate-400 mx-auto" />
               <div>
-                <p className="font-semibold text-slate-200">
+                <p className="font-semibold text-slate-800 dark:text-slate-200">
                   {totalCount === 0 ? 'No tasks in this project yet' : 'No tasks match current filter'}
                 </p>
-                <p className="text-slate-400 mt-1 max-w-sm mx-auto">
+                <p className="text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto">
                   {totalCount === 0
                     ? 'Break down this project into specific tasks (e.g. Design UI, API Integration, Testing) to monitor progress automatically.'
                     : 'Switch your filter tab to see all tasks.'}
@@ -291,8 +291,8 @@ export const ProjectDetailsPage: React.FC = () => {
                     onClick={() => handleToggleTask(t._id)}
                     className={`mt-0.5 w-5 h-5 rounded-lg border flex items-center justify-center transition-all ${
                       t.status === 'completed'
-                        ? 'bg-accent-emerald border-accent-emerald text-white'
-                        : 'border-white/20 hover:border-accent-violet'
+                        ? 'bg-emerald-500 border-emerald-500 text-white shadow-xs'
+                        : 'border-slate-300 dark:border-white/20 hover:border-violet-500'
                     }`}
                   >
                     {t.status === 'completed' && <CheckSquare className="w-3.5 h-3.5" />}
@@ -300,17 +300,17 @@ export const ProjectDetailsPage: React.FC = () => {
                   <div className="space-y-0.5">
                     <h5
                       className={`text-xs sm:text-sm font-semibold ${
-                        t.status === 'completed' ? 'line-through text-slate-500' : 'text-slate-100'
+                        t.status === 'completed' ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-100'
                       }`}
                     >
                       {t.title}
                     </h5>
                     {t.description && (
-                      <p className="text-xs text-slate-400">{t.description}</p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400">{t.description}</p>
                     )}
-                    <div className="flex items-center gap-3 text-[10px] text-slate-400 pt-0.5">
+                    <div className="flex items-center gap-3 text-[10px] text-slate-500 dark:text-slate-400 pt-0.5">
                       {t.deadline && (
-                        <span className="flex items-center gap-1 text-accent-amber">
+                        <span className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-medium">
                           <Clock className="w-3 h-3" /> Due {new Date(t.deadline).toLocaleDateString()}
                         </span>
                       )}
@@ -325,7 +325,7 @@ export const ProjectDetailsPage: React.FC = () => {
                   </GlassBadge>
                   <button
                     onClick={() => handleDeleteTask(t._id)}
-                    className="p-1 rounded-lg text-slate-500 hover:text-accent-rose transition-colors"
+                    className="p-1 rounded-lg text-slate-400 hover:text-rose-600 transition-colors"
                     title="Delete task"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -363,11 +363,11 @@ export const ProjectDetailsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">Priority</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Priority</label>
               <select
                 value={taskPriority}
                 onChange={(e) => setTaskPriority(e.target.value as any)}
-                className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none"
+                className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -409,11 +409,11 @@ export const ProjectDetailsPage: React.FC = () => {
         title="Delete Project"
         maxWidth="md"
       >
-        <div className="space-y-4 text-xs text-slate-300">
+        <div className="space-y-4 text-xs text-slate-700 dark:text-slate-300">
           <p>
-            Are you sure you want to delete <strong className="text-white">{project?.title}</strong>?
+            Are you sure you want to delete <strong className="text-slate-900 dark:text-white">{project?.title}</strong>?
           </p>
-          <p className="text-slate-400">
+          <p className="text-slate-500 dark:text-slate-400">
             Associated tasks will become standalone tasks rather than being deleted permanently.
           </p>
           <div className="flex justify-end gap-2 pt-2">

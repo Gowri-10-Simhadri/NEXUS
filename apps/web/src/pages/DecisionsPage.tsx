@@ -82,11 +82,11 @@ export const DecisionsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold font-display text-slate-100 flex items-center gap-2">
-            <GitBranch className="w-6 h-6 text-accent-violet" />
+          <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100 flex items-center gap-2">
+            <GitBranch className="w-6 h-6 text-violet-600 dark:text-violet-400" />
             <span>Strategic Decision Memory</span>
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Log architectural, technical, and lifestyle decisions with rationale so the AI can explain "why did we choose this?" in the future
           </p>
         </div>
@@ -97,32 +97,32 @@ export const DecisionsPage: React.FC = () => {
       </div>
 
       {/* Explanatory Banner */}
-      <div className="p-4 rounded-2xl bg-accent-violet/10 border border-accent-violet/20 flex items-start gap-3 text-xs text-slate-300">
-        <Info className="w-5 h-5 text-accent-violet shrink-0 mt-0.5" />
+      <div className="p-4 rounded-2xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800/40 flex items-start gap-3 text-xs text-slate-700 dark:text-slate-300">
+        <Info className="w-5 h-5 text-violet-600 dark:text-violet-400 shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <p className="font-semibold text-slate-100">
+          <p className="font-bold text-slate-900 dark:text-slate-100">
             Why record decisions in NEXUS?
           </p>
-          <p className="text-slate-300 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
             Projects often suffer from "decision amnesia" where developers or creators forget why a particular library, database, or architecture was selected months later. NEXUS stores your chosen option and trade-offs, enabling the AI to recall exact decision contexts whenever you ask.
           </p>
         </div>
       </div>
 
       {/* Search Bar */}
-      <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-nexus-900/60 border border-white/10 text-xs text-slate-300">
+      <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 text-xs text-slate-800 dark:text-slate-300 shadow-sm">
         <Search className="w-4 h-4 text-slate-400 shrink-0" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search past decisions, options chosen, or reasoning..."
-          className="bg-transparent flex-1 text-slate-100 placeholder-slate-500 focus:outline-none text-xs"
+          className="bg-transparent flex-1 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none text-xs"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className="text-[11px] text-slate-400 hover:text-white"
+            className="text-[11px] text-slate-500 hover:text-slate-900 dark:hover:text-white"
           >
             Clear ({filteredDecisions.length} results)
           </button>
@@ -132,11 +132,11 @@ export const DecisionsPage: React.FC = () => {
       {/* Decisions List */}
       <div className="space-y-4">
         {filteredDecisions.length === 0 ? (
-          <GlassCard className="p-12 text-center text-xs text-slate-400 space-y-3">
-            <GitBranch className="w-10 h-10 text-slate-500 mx-auto" />
+          <GlassCard className="p-12 text-center text-xs text-slate-500 space-y-3">
+            <GitBranch className="w-10 h-10 text-slate-400 mx-auto" />
             <div>
-              <p className="font-semibold text-slate-200 text-sm">No decisions logged yet</p>
-              <p className="text-slate-400 mt-1 max-w-md mx-auto">
+              <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">No decisions logged yet</p>
+              <p className="text-slate-500 dark:text-slate-400 mt-1 max-w-md mx-auto">
                 {searchQuery
                   ? 'No decisions matched your search query.'
                   : 'Record important project decisions (e.g. "Use MongoDB Atlas for flexible JSON document storage") to establish historical context.'}
@@ -152,25 +152,25 @@ export const DecisionsPage: React.FC = () => {
           </GlassCard>
         ) : (
           filteredDecisions.map((dec) => (
-            <GlassCard key={dec._id} className="p-6 space-y-4" glow="violet">
+            <GlassCard key={dec._id} className="p-6 space-y-4 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm" glow="violet">
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold text-accent-cyan uppercase tracking-wider">
+                    <span className="text-[10px] font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider">
                       Recorded Decision
                     </span>
                     <span className="text-[11px] text-slate-500">
                       • {new Date(dec.createdAt).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold font-display text-slate-100">{dec.title}</h3>
+                  <h3 className="text-lg font-bold font-display text-slate-900 dark:text-slate-100">{dec.title}</h3>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <GlassBadge variant="emerald">Chosen: {dec.chosenOption}</GlassBadge>
                   <button
                     onClick={() => handleDeleteDecision(dec._id)}
-                    className="p-1 text-slate-500 hover:text-accent-rose transition-colors"
+                    className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
                     title="Delete Decision"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -178,20 +178,20 @@ export const DecisionsPage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed">
-                <strong className="text-slate-100">Context / Problem:</strong> {dec.context}
+              <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                <strong className="text-slate-900 dark:text-slate-100">Context / Problem:</strong> {dec.context}
               </p>
 
-              <div className="p-3.5 rounded-2xl bg-nexus-900/60 border border-white/10 space-y-1 text-xs">
-                <span className="font-semibold text-accent-violet block text-[11px] uppercase tracking-wider">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 space-y-1 text-xs">
+                <span className="font-semibold text-violet-600 dark:text-violet-400 block text-[11px] uppercase tracking-wider">
                   Reasoning & Trade-offs:
                 </span>
-                <p className="text-slate-300 leading-relaxed">{dec.reasoning}</p>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{dec.reasoning}</p>
               </div>
 
               {dec.outcome && (
-                <p className="text-xs text-slate-400">
-                  <strong className="text-slate-200">Outcome / Status:</strong> {dec.outcome}
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  <strong className="text-slate-800 dark:text-slate-200">Outcome / Status:</strong> {dec.outcome}
                 </p>
               )}
             </GlassCard>

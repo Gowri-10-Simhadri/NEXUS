@@ -60,8 +60,8 @@ export const CalendarPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold font-display text-slate-100">Schedule & Calendar</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">Schedule & Calendar</h2>
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Unified timeline of examinations, meetings, and project deadlines
           </p>
         </div>
@@ -75,21 +75,21 @@ export const CalendarPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left 2 Cols: Upcoming Scheduled Items */}
         <div className="lg:col-span-2 space-y-4">
-          <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-            <CalendarIcon className="w-4 h-4 text-accent-violet" />
+          <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <CalendarIcon className="w-4 h-4 text-violet-600 dark:text-violet-400" />
             <span>Timeline Events ({events.length})</span>
           </h3>
 
           <div className="space-y-3">
             {events.length === 0 ? (
-              <GlassCard className="p-8 text-center text-xs text-slate-400">
+              <GlassCard className="p-8 text-center text-xs text-slate-500">
                 No events scheduled.
               </GlassCard>
             ) : (
               events.map((ev) => (
                 <GlassCard
                   key={ev._id}
-                  className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm"
                   interactive
                   glow={ev.type === 'exam' ? 'rose' : 'violet'}
                 >
@@ -98,10 +98,10 @@ export const CalendarPage: React.FC = () => {
                       <GlassBadge variant={ev.type === 'exam' ? 'rose' : 'violet'}>
                         {ev.type}
                       </GlassBadge>
-                      <h4 className="font-bold text-sm text-slate-100">{ev.title}</h4>
+                      <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">{ev.title}</h4>
                     </div>
                     {ev.description && (
-                      <p className="text-xs text-slate-400 max-w-xl">{ev.description}</p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 max-w-xl">{ev.description}</p>
                     )}
                     {ev.location && (
                       <span className="text-[11px] text-slate-500 block">📍 {ev.location}</span>
@@ -109,10 +109,10 @@ export const CalendarPage: React.FC = () => {
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="text-xs font-bold text-slate-200 block">
+                    <span className="text-xs font-bold text-slate-900 dark:text-slate-200 block">
                       {new Date(ev.startTime).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
                     </span>
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-slate-500 dark:text-slate-400">
                       {new Date(ev.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(ev.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
@@ -124,27 +124,27 @@ export const CalendarPage: React.FC = () => {
 
         {/* Right 1 Col: Embedded Project & Task Deadlines */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-            <Clock className="w-4 h-4 text-accent-amber" />
+          <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             <span>Active Deadlines</span>
           </h3>
 
           <div className="space-y-3">
             {projectDeadlines.map((p) => (
-              <GlassCard key={p.id} className="p-4 space-y-1 border-accent-cyan/30">
-                <span className="text-[10px] font-bold text-accent-cyan uppercase">Project Due</span>
-                <h5 className="font-bold text-xs text-slate-100">{p.title}</h5>
-                <p className="text-[11px] text-slate-400">
+              <GlassCard key={p.id} className="p-4 space-y-1 border border-cyan-300 dark:border-cyan-500/30 bg-cyan-50/30 dark:bg-nexus-900/60 shadow-xs">
+                <span className="text-[10px] font-bold text-cyan-700 dark:text-cyan-400 uppercase">Project Due</span>
+                <h5 className="font-bold text-xs text-slate-900 dark:text-slate-100">{p.title}</h5>
+                <p className="text-[11px] text-slate-600 dark:text-slate-400">
                   {new Date(p.startTime).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                 </p>
               </GlassCard>
             ))}
 
             {taskDeadlines.map((t) => (
-              <GlassCard key={t.id} className="p-4 space-y-1 border-accent-amber/30">
-                <span className="text-[10px] font-bold text-accent-amber uppercase">Task Due</span>
-                <h5 className="font-bold text-xs text-slate-100">{t.title}</h5>
-                <p className="text-[11px] text-slate-400">
+              <GlassCard key={t.id} className="p-4 space-y-1 border border-amber-300 dark:border-amber-500/30 bg-amber-50/30 dark:bg-nexus-900/60 shadow-xs">
+                <span className="text-[10px] font-bold text-amber-700 dark:text-amber-400 uppercase">Task Due</span>
+                <h5 className="font-bold text-xs text-slate-900 dark:text-slate-100">{t.title}</h5>
+                <p className="text-[11px] text-slate-600 dark:text-slate-400">
                   {new Date(t.startTime).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                 </p>
               </GlassCard>
@@ -169,11 +169,11 @@ export const CalendarPage: React.FC = () => {
           />
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-slate-300">Event Type</label>
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Event Type</label>
             <select
               value={type}
               onChange={(e) => setType(e.target.value as any)}
-              className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none"
+              className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
             >
               <option value="exam">Examination (High-Priority Alert)</option>
               <option value="meeting">Meeting</option>

@@ -75,8 +75,8 @@ export const ProjectsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold font-display text-slate-100">Projects Dashboard</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">Projects Dashboard</h2>
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Create initiatives, attach actionable tasks, and track automated completion progress
           </p>
         </div>
@@ -90,7 +90,7 @@ export const ProjectsPage: React.FC = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-2 border-b border-white/10 pb-3">
+      <div className="flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
         {[
           { id: 'all', label: 'All Projects' },
           { id: 'in_progress', label: 'In Progress' },
@@ -101,8 +101,8 @@ export const ProjectsPage: React.FC = () => {
             onClick={() => setFilterStatus(tab.id as any)}
             className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               filterStatus === tab.id
-                ? 'bg-accent-cyan text-white shadow-md shadow-accent-cyan/30'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-white/10'
+                ? 'bg-cyan-600 text-white shadow-md shadow-cyan-500/30'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/10'
             }`}
           >
             {tab.label}
@@ -114,11 +114,11 @@ export const ProjectsPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.length === 0 ? (
           <div className="col-span-full">
-            <GlassCard className="p-12 text-center text-xs text-slate-400 space-y-3">
-              <FolderKanban className="w-10 h-10 text-slate-500 mx-auto" />
+            <GlassCard className="p-12 text-center text-xs text-slate-500 space-y-3">
+              <FolderKanban className="w-10 h-10 text-slate-400 mx-auto" />
               <div>
-                <p className="font-semibold text-slate-200 text-sm">No projects found</p>
-                <p className="text-slate-400 mt-1">
+                <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">No projects found</p>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">
                   Create a project to group tasks, monitor milestones, and automatically calculate progress.
                 </p>
               </div>
@@ -141,13 +141,13 @@ export const ProjectsPage: React.FC = () => {
               <GlassCard
                 key={proj._id}
                 onClick={() => navigate(`/projects/${proj._id}`)}
-                className="p-5 flex flex-col justify-between space-y-4 cursor-pointer hover:scale-[1.01] transition-transform"
+                className="p-5 flex flex-col justify-between space-y-4 cursor-pointer hover:scale-[1.01] transition-transform bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm"
                 interactive
                 glow={isFinished ? 'violet' : 'cyan'}
               >
                 <div className="space-y-3">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-bold text-base text-slate-100 font-display leading-tight">
+                    <h3 className="font-bold text-base text-slate-900 dark:text-slate-100 font-display leading-tight">
                       {proj.title}
                     </h3>
                     <GlassBadge variant={isFinished ? 'emerald' : 'cyan'}>
@@ -156,13 +156,13 @@ export const ProjectsPage: React.FC = () => {
                   </div>
 
                   {proj.description && (
-                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
                       {proj.description}
                     </p>
                   )}
 
                   {proj.deadline && (
-                    <div className="flex items-center gap-1.5 text-xs text-accent-amber font-medium">
+                    <div className="flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-medium">
                       <Clock className="w-3.5 h-3.5" />
                       <span>
                         Due {new Date(proj.deadline).toLocaleDateString(undefined, {
@@ -177,24 +177,24 @@ export const ProjectsPage: React.FC = () => {
                   )}
                 </div>
 
-                <div className="space-y-2 pt-3 border-t border-white/[0.08]">
+                <div className="space-y-2 pt-3 border-t border-slate-200/80 dark:border-white/[0.08]">
                   <div className="flex justify-between items-center text-xs">
                     {total === 0 ? (
-                      <span className="text-slate-400 italic">No tasks yet (0/0)</span>
+                      <span className="text-slate-500 italic">No tasks yet (0/0)</span>
                     ) : (
-                      <span className="text-slate-300 font-medium">
+                      <span className="text-slate-700 dark:text-slate-300 font-medium">
                         {completed} / {total} tasks completed
                       </span>
                     )}
-                    <span className="font-bold text-slate-100">{proj.progress}%</span>
+                    <span className="font-bold text-slate-900 dark:text-slate-100">{proj.progress}%</span>
                   </div>
 
-                  <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div className="w-full bg-slate-200/70 dark:bg-white/10 rounded-full h-2 overflow-hidden">
                     <div
                       className={`h-2 rounded-full transition-all duration-500 ${
                         isFinished
-                          ? 'bg-gradient-to-r from-accent-emerald to-accent-cyan'
-                          : 'bg-gradient-to-r from-accent-violet to-accent-cyan'
+                          ? 'bg-gradient-to-r from-emerald-500 to-cyan-500'
+                          : 'bg-gradient-to-r from-violet-600 to-cyan-500'
                       }`}
                       style={{ width: `${proj.progress}%` }}
                     />
@@ -231,11 +231,11 @@ export const ProjectsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">Link to Long-Term Goal</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Link to Long-Term Goal</label>
               <select
                 value={goalId}
                 onChange={(e) => setGoalId(e.target.value)}
-                className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent-violet/50"
+                className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
               >
                 <option value="">No Linked Goal (Independent)</option>
                 {goals.map((g) => (
@@ -247,11 +247,11 @@ export const ProjectsPage: React.FC = () => {
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">Priority</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Priority</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as any)}
-                className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent-violet/50"
+                className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>

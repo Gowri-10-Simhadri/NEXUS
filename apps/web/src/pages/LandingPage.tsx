@@ -10,9 +10,7 @@ import {
   AlertTriangle,
   ChevronRight,
   Database,
-  Lock,
   Layers,
-  Sparkle,
   LogIn,
   CheckCircle2,
 } from 'lucide-react';
@@ -26,23 +24,32 @@ export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100/80 text-slate-800 flex flex-col justify-between overflow-x-hidden relative selection:bg-violet-500 selection:text-white">
-      {/* Soft Decorative Ambient Background Blobs */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden z-0 opacity-60">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[400px] bg-gradient-to-tr from-cyan-200/40 via-violet-200/40 to-pink-200/30 rounded-full blur-3xl" />
-        <div className="absolute top-[40%] -left-32 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl" />
-        <div className="absolute top-[60%] -right-32 w-96 h-96 bg-violet-200/30 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100/90 text-slate-900 flex flex-col justify-between overflow-x-hidden relative selection:bg-violet-500 selection:text-white">
+      {/* Abstract Animated Layered Background (NO GRIDS) */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
+        {/* Layer 1: Blurred Logo-Color Ambient Orbs */}
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[500px] bg-gradient-to-tr from-violet-200/50 via-cyan-200/50 to-pink-200/40 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute top-[35%] -left-32 w-[420px] h-[420px] bg-cyan-200/40 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute top-[55%] -right-32 w-[450px] h-[450px] bg-violet-200/40 rounded-full blur-3xl animate-float-reverse" />
+        <div className="absolute top-[80%] left-[10%] w-[380px] h-[380px] bg-emerald-200/35 rounded-full blur-3xl animate-float-slow" />
+
+        {/* Layer 2: Subtle Floating 3D Geometric Accents */}
+        <div className="absolute top-28 left-[12%] w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/10 to-transparent border border-violet-300/30 backdrop-blur-md rotate-12 animate-float-slow shadow-sm" />
+        <div className="absolute top-48 right-[14%] w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-300/30 backdrop-blur-md animate-float-reverse shadow-sm" />
+        <div className="absolute top-[68%] left-[8%] w-24 h-24 rounded-3xl bg-gradient-to-br from-pink-500/10 to-transparent border border-pink-300/30 backdrop-blur-md -rotate-6 animate-float-slow shadow-sm" />
       </div>
 
-      {/* Modern Light Header */}
-      <header className="relative z-30 flex items-center justify-between px-6 sm:px-12 py-5 border-b border-slate-200/80 bg-white/70 backdrop-blur-md sticky top-0 shadow-sm">
+      {/* Top Header Navigation */}
+      <header className="relative z-30 flex items-center justify-between px-6 sm:px-12 py-5 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl sticky top-0 shadow-sm">
+        {/* Brand with Logo on the LEFT and Dark Text on the RIGHT */}
         <NexusLogo size="md" />
-        <div className="flex items-center gap-3">
+
+        <div className="flex items-center gap-3.5">
           <button
             onClick={() => navigate('/login')}
-            className="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition-all flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:text-slate-950 hover:bg-slate-100 transition-all flex items-center gap-2 cursor-pointer"
           >
-            <LogIn className="w-4 h-4 text-slate-500" />
+            <LogIn className="w-4 h-4 text-violet-600" />
             <span>Sign In</span>
           </button>
           <Button3D
@@ -56,21 +63,21 @@ export const LandingPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="relative z-10 max-w-6xl mx-auto px-6 py-12 sm:py-20 space-y-20">
-        <div className="text-center space-y-7 max-w-4xl mx-auto flex flex-col items-center">
+      {/* Main Hero Section */}
+      <main className="relative z-10 max-w-6xl mx-auto px-6 py-12 sm:py-20 space-y-24">
+        <div className="text-center space-y-8 max-w-4xl mx-auto flex flex-col items-center">
           {/* Top Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-50 border border-violet-200/80 text-violet-700 text-xs font-semibold tracking-wide shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-violet-800 text-xs font-bold tracking-wide shadow-sm">
             <Sparkles className="w-4 h-4 text-violet-600" />
             <span>AI Personal Intelligence & Planning System</span>
           </div>
 
-          {/* 1. Main Project Title: 3D Animated NEXUS with Logo directly to the right - NO CARD */}
+          {/* 1. Main Visual Centerpiece: Advanced 3D NEXUS Title with Logo on the LEFT (NO CARD) */}
           <div className="w-full flex items-center justify-center pt-2">
             <NexusTitle3D />
           </div>
 
-          {/* 2. Animated Tagline Below NEXUS: Restored previous correct tagline using FoldText */}
+          {/* 2. Tagline Below NEXUS: Restored Tagline Animated with FoldText */}
           <div className="w-full flex justify-center py-1">
             <FoldText
               text="Know when you need to act."
@@ -81,16 +88,16 @@ export const LandingPage: React.FC = () => {
               stagger={0.04}
               ease="power3.out"
               perspective={800}
-              creaseShading={0.5}
-              fontSize="clamp(1.6rem, 4.2vw, 3.2rem)"
-              fontWeight={700}
+              creaseShading={0.45}
+              fontSize="clamp(1.8rem, 4.4vw, 3.4rem)"
+              fontWeight={800}
               color="#0f172a"
               className="fold-text-nexus"
             />
           </div>
 
-          {/* Supporting Description */}
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+          {/* Supporting Description with Dark High-Contrast Text */}
+          <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-2xl mx-auto font-normal">
             NEXUS proactively connects your goals, deadlines, calendar events, documents, and decisions. It anticipates workload crunches and alerts you natively before conflicts happen.
           </p>
 
@@ -119,85 +126,87 @@ export const LandingPage: React.FC = () => {
         {/* Flagship Scenario Interactive Showcase */}
         <div className="space-y-6">
           <div className="text-center space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-200">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-cyan-800 bg-cyan-50 px-3.5 py-1 rounded-full border border-cyan-200 shadow-sm">
               Flagship Intelligence Engine
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-800">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900">
               Workload Crunch & Conflict Detection
             </h2>
           </div>
 
-          <div className="p-6 sm:p-9 rounded-3xl bg-white/90 border border-slate-200/90 shadow-[0_15px_35px_-5px_rgba(0,0,0,0.06)] backdrop-blur-xl space-y-6">
+          <div className="p-6 sm:p-9 rounded-3xl bg-white border border-slate-200 shadow-[0_16px_36px_-8px_rgba(0,0,0,0.08)] backdrop-blur-xl space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               {/* Box 1: Project Deadline */}
-              <div className="p-5 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-3 flex flex-col justify-between">
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 flex flex-col justify-between shadow-sm">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-cyan-700 uppercase tracking-wider">Project Deadline</span>
+                    <span className="text-xs font-bold text-cyan-800 uppercase tracking-wider">Project Deadline</span>
                     <Clock className="w-4 h-4 text-cyan-600" />
                   </div>
-                  <h3 className="font-bold text-base text-slate-800">AI Music Composer</h3>
-                  <p className="text-xs text-slate-500">Due: <strong className="text-slate-700">Friday 5:00 PM</strong></p>
+                  <h3 className="font-bold text-base text-slate-900">AI Music Composer</h3>
+                  <p className="text-xs text-slate-600">Due: <strong className="text-slate-900">Friday 5:00 PM</strong></p>
                   <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                     <div className="bg-gradient-to-r from-cyan-500 to-blue-600 h-2 rounded-full w-[50%]" />
                   </div>
                 </div>
-                <p className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600" />
+                <p className="text-xs text-slate-600 font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600" />
                   <span>50% complete (2 tasks pending, ~4 hrs)</span>
                 </p>
               </div>
 
               {/* Box 2: Examination Event */}
-              <div className="p-5 rounded-2xl bg-rose-50/50 border border-rose-200/70 space-y-3 flex flex-col justify-between">
+              <div className="p-5 rounded-2xl bg-rose-50/70 border border-rose-200 space-y-3 flex flex-col justify-between shadow-sm">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-rose-700 uppercase tracking-wider">Calendar Exam</span>
+                    <span className="text-xs font-bold text-rose-800 uppercase tracking-wider">Calendar Exam</span>
                     <AlertTriangle className="w-4 h-4 text-rose-600" />
                   </div>
-                  <h3 className="font-bold text-base text-slate-800">Architecture Final Exam</h3>
-                  <p className="text-xs text-slate-500">Scheduled: <strong className="text-slate-700">Saturday 10:00 AM</strong></p>
+                  <h3 className="font-bold text-base text-slate-900">Architecture Final Exam</h3>
+                  <p className="text-xs text-slate-600">Scheduled: <strong className="text-slate-900">Saturday 10:00 AM</strong></p>
                 </div>
-                <div className="p-3 rounded-xl bg-rose-100/60 border border-rose-200 text-xs text-rose-800 font-medium">
+                <div className="p-3 rounded-xl bg-rose-100/80 border border-rose-200 text-xs text-rose-900 font-semibold">
                   High-stakes evaluation requires dedicated preparation window.
                 </div>
               </div>
 
               {/* Box 3: Proactive Intelligence Action */}
-              <div className="p-5 rounded-2xl bg-gradient-to-br from-violet-50 to-indigo-50/70 border border-violet-200 space-y-3 flex flex-col justify-between shadow-sm">
+              <div className="p-5 rounded-2xl bg-gradient-to-br from-violet-50 to-indigo-50 border border-violet-200 space-y-3 flex flex-col justify-between shadow-sm">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-violet-700 uppercase tracking-wider">Proactive Resolution</span>
+                    <span className="text-xs font-bold text-violet-800 uppercase tracking-wider">Proactive Resolution</span>
                     <Brain className="w-5 h-5 text-violet-600" />
                   </div>
-                  <h4 className="font-bold text-sm text-slate-800">NEXUS AI Recovery Plan</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <h4 className="font-bold text-sm text-slate-900">NEXUS AI Recovery Plan</h4>
+                  <p className="text-xs text-slate-700 leading-relaxed font-normal">
                     Detected conflict. Suggested: Complete remaining 2 project tasks today to reserve Friday evening for exam review.
                   </p>
                 </div>
-                <button
+                <Button3D
                   onClick={() => navigate('/login')}
-                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xs font-semibold flex items-center justify-center gap-2 hover:from-violet-700 hover:to-indigo-700 transition-all shadow-md shadow-violet-500/20 active:scale-[0.98]"
+                  variant="primary"
+                  size="sm"
+                  iconRight={<ChevronRight className="w-4 h-4" />}
+                  className="w-full"
                 >
-                  <span>Explore Live Demo</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+                  Explore Live Demo
+                </Button3D>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Six Interactive 3D Cards with Coordinated Multicolor Accents */}
+        {/* Six Interactive 3D Cards with Layered Depth and Logo-Derived Colors */}
         <div className="space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-violet-600 bg-violet-50 px-3 py-1 rounded-full border border-violet-200">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-violet-800 bg-violet-50 px-3.5 py-1 rounded-full border border-violet-200 shadow-sm">
               Platform Features
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-800">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900">
               Built for Clarity, Focus, and Execution
             </h2>
-            <p className="text-sm text-slate-500 max-w-xl mx-auto">
-              Interact with the cards below to explore how NEXUS orchestrates your work.
+            <p className="text-sm text-slate-600 max-w-xl mx-auto">
+              Hover over the cards below to experience interactive 3D perspective and physical depth.
             </p>
           </div>
 
@@ -207,11 +216,11 @@ export const LandingPage: React.FC = () => {
             <TiltCard3D
               accent="cyan"
               badge="Intelligence"
-              icon={<Clock className="w-6 h-6" />}
+              icon={<Clock className="w-7 h-7" />}
               title="Workload Conflict Detection"
               description="Continuous analysis across projects, tasks, and calendar events to highlight crunch zones before deadlines collide."
               action={
-                <span className="text-xs font-semibold text-cyan-600 flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                <span className="text-xs font-bold text-cyan-700 flex items-center gap-1.5 group-hover:gap-2 transition-all">
                   <span>View conflict analysis</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -222,11 +231,11 @@ export const LandingPage: React.FC = () => {
             <TiltCard3D
               accent="violet"
               badge="Autonomy"
-              icon={<Brain className="w-6 h-6" />}
+              icon={<Brain className="w-7 h-7" />}
               title="Proactive AI Recovery Plans"
               description="Automated rescheduling suggestions and mitigation paths when tasks fall behind or schedules become congested."
               action={
-                <span className="text-xs font-semibold text-violet-600 flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                <span className="text-xs font-bold text-violet-700 flex items-center gap-1.5 group-hover:gap-2 transition-all">
                   <span>Generate recovery plans</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -237,11 +246,11 @@ export const LandingPage: React.FC = () => {
             <TiltCard3D
               accent="pink"
               badge="Knowledge"
-              icon={<Database className="w-6 h-6" />}
+              icon={<Database className="w-7 h-7" />}
               title="Personal Memory & Document RAG"
               description="Upload PDF specifications, notes, and research. Query them with semantic vector retrieval powered by Gemini."
               action={
-                <span className="text-xs font-semibold text-pink-600 flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                <span className="text-xs font-bold text-pink-700 flex items-center gap-1.5 group-hover:gap-2 transition-all">
                   <span>Explore memory store</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -252,11 +261,11 @@ export const LandingPage: React.FC = () => {
             <TiltCard3D
               accent="teal"
               badge="Native"
-              icon={<Bell className="w-6 h-6" />}
+              icon={<Bell className="w-7 h-7" />}
               title="Native Windows Desktop Agent"
               description="Runs in your Windows tray and delivers proactive desktop notifications even when your browser is closed."
               action={
-                <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                <span className="text-xs font-bold text-emerald-700 flex items-center gap-1.5 group-hover:gap-2 transition-all">
                   <span>Connect desktop daemon</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -267,11 +276,11 @@ export const LandingPage: React.FC = () => {
             <TiltCard3D
               accent="orange"
               badge="Architecture"
-              icon={<Layers className="w-6 h-6" />}
+              icon={<Layers className="w-7 h-7" />}
               title="Architectural Decision Records"
               description="Capture the 'why' behind architectural choices with structured ADRs linked directly to project roadmaps and goals."
               action={
-                <span className="text-xs font-semibold text-amber-600 flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                <span className="text-xs font-bold text-amber-700 flex items-center gap-1.5 group-hover:gap-2 transition-all">
                   <span>Log architecture records</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -282,11 +291,11 @@ export const LandingPage: React.FC = () => {
             <TiltCard3D
               accent="indigo"
               badge="Security"
-              icon={<Shield className="w-6 h-6" />}
+              icon={<Shield className="w-7 h-7" />}
               title="Self-Sovereign Privacy & Security"
               description="No keystroke logging, no screen capturing, and no intrusive monitoring. Your data remains strictly in your control."
               action={
-                <span className="text-xs font-semibold text-indigo-600 flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                <span className="text-xs font-bold text-indigo-700 flex items-center gap-1.5 group-hover:gap-2 transition-all">
                   <span>Review security guarantees</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -297,7 +306,7 @@ export const LandingPage: React.FC = () => {
       </main>
 
       {/* Modern Light Footer */}
-      <footer className="relative z-10 px-6 py-8 border-t border-slate-200/80 bg-white/50 text-center text-xs text-slate-500">
+      <footer className="relative z-10 px-6 py-8 border-t border-slate-200 bg-white/70 text-center text-xs text-slate-500 font-medium">
         NEXUS © 2026. Built with React, TypeScript, Node.js, and MongoDB.
       </footer>
     </div>

@@ -54,11 +54,11 @@ export const NotesPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold font-display text-slate-100 flex items-center gap-2">
-            <FileText className="w-6 h-6 text-accent-cyan" />
+          <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100 flex items-center gap-2">
+            <FileText className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
             <span>Scratchpad & Notes</span>
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Quick thought capture, sprint notes, and snippet storage
           </p>
         </div>
@@ -70,26 +70,26 @@ export const NotesPage: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {notes.map((n) => (
-          <GlassCard key={n._id} className="p-5 space-y-3 flex flex-col justify-between" interactive>
+          <GlassCard key={n._id} className="p-5 space-y-3 flex flex-col justify-between bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm" interactive>
             <div className="space-y-2">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-bold text-sm text-slate-100">{n.title}</h3>
+                <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">{n.title}</h3>
                 <div className="flex items-center gap-1">
-                  {n.isPinned && <Pin className="w-3.5 h-3.5 text-accent-amber fill-accent-amber" />}
+                  {n.isPinned && <Pin className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />}
                   <button
                     onClick={() => handleDeleteNote(n._id)}
-                    className="p-1 rounded text-slate-500 hover:text-accent-rose"
+                    className="p-1 rounded text-slate-400 hover:text-rose-600 transition-colors"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
-              <p className="text-xs text-slate-300 whitespace-pre-wrap leading-relaxed">
+              <p className="text-xs text-slate-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed">
                 {n.content}
               </p>
             </div>
 
-            <div className="pt-2 border-t border-white/10 text-[10px] text-slate-500">
+            <div className="pt-2 border-t border-slate-200/80 dark:border-white/10 text-[10px] text-slate-500 dark:text-slate-400">
               Updated {new Date(n.updatedAt).toLocaleDateString()}
             </div>
           </GlassCard>
@@ -113,12 +113,12 @@ export const NotesPage: React.FC = () => {
             placeholder="Type your notes..."
             required
           />
-          <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+          <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-700 dark:text-slate-300">
             <input
               type="checkbox"
               checked={isPinned}
               onChange={(e) => setIsPinned(e.target.checked)}
-              className="rounded bg-nexus-900 border-white/20 text-accent-violet"
+              className="rounded bg-white dark:bg-nexus-900 border-slate-300 dark:border-white/20 text-violet-600"
             />
             <span>Pin this note to the top</span>
           </label>

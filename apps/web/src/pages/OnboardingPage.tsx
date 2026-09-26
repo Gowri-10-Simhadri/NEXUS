@@ -44,34 +44,34 @@ export const OnboardingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-nexus-950 text-slate-100 ambient-glow-mesh flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-nexus-950 text-slate-900 dark:text-slate-100 ambient-glow-mesh flex items-center justify-center p-4">
       <div className="w-full max-w-xl space-y-6">
         {/* Progress Bar */}
-        <div className="flex items-center justify-between text-xs text-slate-400">
+        <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
           <span>Step {step} of 3</span>
           <div className="flex gap-1.5">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
                 className={`h-1.5 w-8 rounded-full transition-all ${
-                  step >= i ? 'bg-accent-violet' : 'bg-white/10'
+                  step >= i ? 'bg-violet-600' : 'bg-slate-200 dark:bg-white/10'
                 }`}
               />
             ))}
           </div>
         </div>
 
-        <GlassCard className="p-6 sm:p-10 space-y-6">
+        <GlassCard className="p-6 sm:p-10 space-y-6 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-lg">
           {/* STEP 1: Profile & Timezone */}
           {step === 1 && (
             <div className="space-y-6 animate-fadeIn">
               <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-violet">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-600 dark:text-violet-400">
                   <Sparkles className="w-4 h-4" />
                   <span>Personalization</span>
                 </div>
-                <h2 className="text-2xl font-bold font-display">What best describes your role?</h2>
-                <p className="text-xs text-slate-400">
+                <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">What best describes your role?</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   NEXUS customizes prioritization heuristics according to your workflow pattern.
                 </p>
               </div>
@@ -91,8 +91,8 @@ export const OnboardingPage: React.FC = () => {
                     onClick={() => setProfileType(item.id)}
                     className={`p-3.5 rounded-2xl border text-xs font-medium text-left transition-all ${
                       profileType === item.id
-                        ? 'border-accent-violet bg-accent-violet/20 text-white shadow-md shadow-accent-violet/20'
-                        : 'border-white/10 bg-nexus-900/50 text-slate-300 hover:border-white/20'
+                        ? 'border-violet-600 bg-violet-50 dark:bg-violet-500/20 text-violet-950 dark:text-white shadow-md shadow-violet-500/20 font-bold'
+                        : 'border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-nexus-900/50 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-white/20'
                     }`}
                   >
                     {item.label}
@@ -119,12 +119,12 @@ export const OnboardingPage: React.FC = () => {
           {step === 2 && (
             <div className="space-y-6 animate-fadeIn">
               <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-cyan">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-600 dark:text-cyan-400">
                   <Clock className="w-4 h-4" />
                   <span>Working Hours & Proactivity</span>
                 </div>
-                <h2 className="text-2xl font-bold font-display">When do you do your best work?</h2>
-                <p className="text-xs text-slate-400">
+                <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">When do you do your best work?</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   NEXUS schedules focus time blocks and delivers smart reminders during your active hours.
                 </p>
               </div>
@@ -144,13 +144,13 @@ export const OnboardingPage: React.FC = () => {
                 />
               </div>
 
-              <div className="p-4 rounded-2xl bg-nexus-900/60 border border-white/10 space-y-3">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 space-y-3">
                 <label className="flex items-center justify-between cursor-pointer">
                   <div className="space-y-0.5">
-                    <span className="text-xs font-semibold text-slate-200 block">
+                    <span className="text-xs font-semibold text-slate-900 dark:text-slate-200 block">
                       Enable Desktop Agent Notifications
                     </span>
-                    <span className="text-[11px] text-slate-400 block">
+                    <span className="text-[11px] text-slate-600 dark:text-slate-400 block">
                       Receive proactive deadline warnings directly in Windows.
                     </span>
                   </div>
@@ -158,7 +158,7 @@ export const OnboardingPage: React.FC = () => {
                     type="checkbox"
                     checked={desktopNotifs}
                     onChange={(e) => setDesktopNotifs(e.target.checked)}
-                    className="w-4 h-4 text-accent-violet rounded bg-nexus-950 border-white/20"
+                    className="w-4 h-4 text-violet-600 rounded bg-white dark:bg-nexus-950 border-slate-300 dark:border-white/20"
                   />
                 </label>
               </div>
@@ -178,12 +178,12 @@ export const OnboardingPage: React.FC = () => {
           {step === 3 && (
             <div className="space-y-6 animate-fadeIn">
               <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-emerald">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                   <Target className="w-4 h-4" />
                   <span>Your North Star</span>
                 </div>
-                <h2 className="text-2xl font-bold font-display">What is your primary milestone right now?</h2>
-                <p className="text-xs text-slate-400">
+                <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">What is your primary milestone right now?</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   You can break this down into actionable projects and tasks inside NEXUS.
                 </p>
               </div>
@@ -195,8 +195,8 @@ export const OnboardingPage: React.FC = () => {
                 placeholder="e.g. Master Full-Stack AI & Cloud Systems"
               />
 
-              <div className="p-4 rounded-2xl bg-accent-violet/10 border border-accent-violet/20 text-xs text-slate-300 space-y-1">
-                <span className="font-semibold text-accent-violet block">You're ready to launch!</span>
+              <div className="p-4 rounded-2xl bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                <span className="font-bold text-violet-800 dark:text-violet-300 block">You're ready to launch!</span>
                 <p>NEXUS will initialize your dashboard and start monitoring upcoming deadlines.</p>
               </div>
 

@@ -132,8 +132,8 @@ export const GoalsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold font-display text-slate-100">Goals & Vision</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100">Goals & Vision</h2>
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Define long-term strategic goals, track incremental milestone completions, and watch your progress unfold
           </p>
         </div>
@@ -147,11 +147,11 @@ export const GoalsPage: React.FC = () => {
       </div>
 
       {goals.length === 0 ? (
-        <GlassCard className="p-12 text-center text-xs text-slate-400 space-y-3">
-          <Target className="w-10 h-10 text-slate-500 mx-auto" />
+        <GlassCard className="p-12 text-center text-xs text-slate-500 space-y-3">
+          <Target className="w-10 h-10 text-slate-400 mx-auto" />
           <div>
-            <p className="font-semibold text-slate-200 text-sm">No long-term goals set yet</p>
-            <p className="text-slate-400 mt-1 max-w-md mx-auto">
+            <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">No long-term goals set yet</p>
+            <p className="text-slate-500 dark:text-slate-400 mt-1 max-w-md mx-auto">
               Create a goal (e.g. "Learn Machine Learning" or "Master Cloud Architecture") with 3-5 milestones to start tracking your cumulative growth.
             </p>
           </div>
@@ -171,33 +171,33 @@ export const GoalsPage: React.FC = () => {
             const isCompleted = goal.status === 'completed' || (totalCount > 0 && completedCount === totalCount);
 
             return (
-              <GlassCard key={goal._id} className="p-6 space-y-5 flex flex-col justify-between" glow={isCompleted ? 'cyan' : 'violet'}>
+              <GlassCard key={goal._id} className="p-6 space-y-5 flex flex-col justify-between bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm" glow={isCompleted ? 'cyan' : 'violet'}>
                 <div className="space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <GlassBadge variant={isCompleted ? 'emerald' : 'violet'}>{goal.category}</GlassBadge>
                         {isCompleted && (
-                          <span className="text-[11px] text-accent-emerald font-semibold flex items-center gap-1">
+                          <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> Completed
                           </span>
                         )}
                       </div>
-                      <h3 className="font-bold text-base text-slate-100 font-display pt-1">
+                      <h3 className="font-bold text-base text-slate-900 dark:text-slate-100 font-display pt-1">
                         {goal.title}
                       </h3>
                       {goal.description && (
-                        <p className="text-xs text-slate-400 leading-relaxed">
+                        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                           {goal.description}
                         </p>
                       )}
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="text-xl font-black text-accent-violet">{goal.progress}%</span>
+                      <span className="text-xl font-black text-violet-600 dark:text-violet-400">{goal.progress}%</span>
                       <button
                         onClick={() => handleDeleteGoal(goal._id)}
-                        className="p-1 text-slate-500 hover:text-accent-rose transition-colors"
+                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
                         title="Delete Goal"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -207,21 +207,21 @@ export const GoalsPage: React.FC = () => {
 
                   {/* Progress bar */}
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[11px] text-slate-400">
+                    <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400">
                       <span>{totalCount === 0 ? 'No milestones yet' : `${completedCount} of ${totalCount} milestones completed`}</span>
                       {goal.targetDate && (
                         <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-accent-amber" />
+                          <Clock className="w-3 h-3 text-amber-600 dark:text-amber-400" />
                           Target: {new Date(goal.targetDate).toLocaleDateString()}
                         </span>
                       )}
                     </div>
-                    <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-slate-200/70 dark:bg-white/10 rounded-full h-2 overflow-hidden">
                       <div
                         className={`h-2 rounded-full transition-all duration-500 ${
                           isCompleted
-                            ? 'bg-gradient-to-r from-accent-emerald to-accent-cyan'
-                            : 'bg-gradient-to-r from-accent-violet via-accent-purple to-accent-emerald'
+                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500'
+                            : 'bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500'
                         }`}
                         style={{ width: `${goal.progress}%` }}
                       />
@@ -230,7 +230,7 @@ export const GoalsPage: React.FC = () => {
 
                   {/* Milestones list */}
                   <div className="space-y-2 pt-1">
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
                       Milestones Checklist
                     </span>
 
@@ -238,20 +238,20 @@ export const GoalsPage: React.FC = () => {
                       {goal.milestones.map((m, idx) => (
                         <div
                           key={idx}
-                          className="group flex items-center justify-between gap-2 p-2 rounded-xl bg-nexus-900/40 hover:bg-white/[0.08] transition-colors text-xs"
+                          className="group flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-50 dark:bg-nexus-900/40 hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors text-xs border border-slate-200/50 dark:border-white/5"
                         >
                           <div
                             onClick={() => handleToggleMilestone(goal, idx)}
                             className="flex items-center gap-2.5 flex-1 cursor-pointer"
                           >
                             {m.completed ? (
-                              <CheckCircle2 className="w-4 h-4 text-accent-emerald shrink-0" />
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                             ) : (
-                              <Circle className="w-4 h-4 text-slate-500 shrink-0" />
+                              <Circle className="w-4 h-4 text-slate-400 shrink-0" />
                             )}
                             <span
                               className={`${
-                                m.completed ? 'line-through text-slate-500' : 'text-slate-200'
+                                m.completed ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200 font-medium'
                               }`}
                             >
                               {m.title}
@@ -260,7 +260,7 @@ export const GoalsPage: React.FC = () => {
 
                           <button
                             onClick={() => handleDeleteMilestone(goal, idx)}
-                            className="opacity-0 group-hover:opacity-100 p-1 text-slate-500 hover:text-accent-rose transition-opacity"
+                            className="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-rose-600 transition-opacity"
                             title="Remove milestone"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -287,11 +287,11 @@ export const GoalsPage: React.FC = () => {
                           }
                         }}
                         placeholder="+ Add next milestone..."
-                        className="flex-1 rounded-xl bg-nexus-900/60 border border-white/10 px-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-accent-violet"
+                        className="flex-1 rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-3 py-1.5 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
                       />
                       <button
                         onClick={() => handleAddInlineMilestone(goal)}
-                        className="px-3 py-1.5 rounded-xl bg-accent-violet/20 hover:bg-accent-violet/30 text-accent-violet font-semibold text-xs transition-colors"
+                        className="px-3 py-1.5 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 dark:bg-violet-500/20 dark:hover:bg-violet-500/30 dark:text-violet-300 font-semibold text-xs transition-colors border border-violet-200 dark:border-transparent"
                       >
                         Add
                       </button>
@@ -300,7 +300,7 @@ export const GoalsPage: React.FC = () => {
                 </div>
 
                 {/* Footer Controls */}
-                <div className="pt-3 border-t border-white/10 flex justify-end gap-2">
+                <div className="pt-3 border-t border-slate-200/80 dark:border-white/10 flex justify-end gap-2">
                   <GlassButton
                     size="sm"
                     variant={isCompleted ? 'secondary' : 'primary'}
@@ -342,11 +342,11 @@ export const GoalsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">Category</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none"
+                className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
               >
                 <option value="Career & Learning">Career & Learning</option>
                 <option value="Engineering & Product">Engineering & Product</option>

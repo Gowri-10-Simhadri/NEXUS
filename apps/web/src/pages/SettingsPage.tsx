@@ -89,17 +89,17 @@ export const SettingsPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h2 className="text-2xl font-bold font-display text-slate-100 flex items-center gap-2">
-          <SettingsIcon className="w-6 h-6 text-accent-violet" />
+        <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-slate-100 flex items-center gap-2">
+          <SettingsIcon className="w-6 h-6 text-violet-600 dark:text-violet-400" />
           <span>System & Account Settings</span>
         </h2>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-600 dark:text-slate-400">
           Manage your personal profile, notification preferences, Desktop Agent, and privacy controls
         </p>
       </div>
 
       {/* Settings Navigation Tabs */}
-      <div className="flex items-center gap-2 border-b border-white/10 pb-3 overflow-x-auto">
+      <div className="flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3 overflow-x-auto">
         {[
           { id: 'profile', label: 'Profile & Work Hours', icon: <User className="w-4 h-4" /> },
           { id: 'notifications', label: 'Notification Rules', icon: <Bell className="w-4 h-4" /> },
@@ -111,8 +111,8 @@ export const SettingsPage: React.FC = () => {
             onClick={() => setActiveTab(tab.id as any)}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
               activeTab === tab.id
-                ? 'bg-accent-violet text-white shadow-md shadow-accent-violet/30'
-                : 'text-slate-400 hover:text-white hover:bg-white/10'
+                ? 'bg-violet-600 text-white shadow-md shadow-violet-500/30'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10'
             }`}
           >
             {tab.icon}
@@ -122,7 +122,7 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {saveMessage && (
-        <div className="p-3.5 rounded-xl bg-accent-emerald/15 border border-accent-emerald/30 text-accent-emerald text-xs font-medium flex items-center gap-2">
+        <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/40 text-emerald-700 dark:text-emerald-400 text-xs font-medium flex items-center gap-2">
           <Check className="w-4 h-4" />
           <span>{saveMessage}</span>
         </div>
@@ -130,7 +130,7 @@ export const SettingsPage: React.FC = () => {
 
       {/* Tab: Profile */}
       {activeTab === 'profile' && (
-        <GlassCard className="p-6 sm:p-8 space-y-6">
+        <GlassCard className="p-6 sm:p-8 space-y-6 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm">
           <form onSubmit={handleSaveProfile} className="space-y-4">
             <GlassInput
               label="Full Name"
@@ -140,11 +140,11 @@ export const SettingsPage: React.FC = () => {
             />
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-300">Profile Type</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">Profile Type</label>
               <select
                 value={profileType}
                 onChange={(e) => setProfileType(e.target.value)}
-                className="w-full rounded-xl bg-nexus-900/60 border border-white/10 px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent-violet/50"
+                className="w-full rounded-xl bg-white dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 shadow-sm"
               >
                 <option value="developer">Developer / Engineer</option>
                 <option value="student">Student / Researcher</option>
@@ -187,31 +187,31 @@ export const SettingsPage: React.FC = () => {
 
       {/* Tab: Notifications */}
       {activeTab === 'notifications' && (
-        <GlassCard className="p-6 sm:p-8 space-y-6">
+        <GlassCard className="p-6 sm:p-8 space-y-6 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm">
           <div className="space-y-4">
-            <label className="flex items-center justify-between p-4 rounded-2xl bg-nexus-900/60 border border-white/10 cursor-pointer">
+            <label className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 cursor-pointer shadow-xs">
               <div className="space-y-0.5">
-                <span className="text-xs font-bold text-slate-100 block">Desktop Agent Native Notifications</span>
-                <span className="text-[11px] text-slate-400 block">Deliver deadline and conflict alerts directly to Windows tray and OS popup</span>
+                <span className="text-xs font-bold text-slate-900 dark:text-slate-100 block">Desktop Agent Native Notifications</span>
+                <span className="text-[11px] text-slate-600 dark:text-slate-400 block">Deliver deadline and conflict alerts directly to Windows tray and OS popup</span>
               </div>
               <input
                 type="checkbox"
                 checked={desktopNotifs}
                 onChange={(e) => setDesktopNotifs(e.target.checked)}
-                className="w-4 h-4 rounded text-accent-violet"
+                className="w-4 h-4 rounded text-violet-600 focus:ring-violet-500"
               />
             </label>
 
-            <label className="flex items-center justify-between p-4 rounded-2xl bg-nexus-900/60 border border-white/10 cursor-pointer">
+            <label className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-nexus-900/60 border border-slate-200 dark:border-white/10 cursor-pointer shadow-xs">
               <div className="space-y-0.5">
-                <span className="text-xs font-bold text-slate-100 block">Quiet Hours (22:00 - 08:00)</span>
-                <span className="text-[11px] text-slate-400 block">Suppress non-critical notifications during rest hours</span>
+                <span className="text-xs font-bold text-slate-900 dark:text-slate-100 block">Quiet Hours (22:00 - 08:00)</span>
+                <span className="text-[11px] text-slate-600 dark:text-slate-400 block">Suppress non-critical notifications during rest hours</span>
               </div>
               <input
                 type="checkbox"
                 checked={quietHoursEnabled}
                 onChange={(e) => setQuietHoursEnabled(e.target.checked)}
-                className="w-4 h-4 rounded text-accent-violet"
+                className="w-4 h-4 rounded text-violet-600 focus:ring-violet-500"
               />
             </label>
 
@@ -226,28 +226,28 @@ export const SettingsPage: React.FC = () => {
 
       {/* Tab: Desktop Agent */}
       {activeTab === 'desktop' && (
-        <GlassCard className="p-6 sm:p-8 space-y-6" glow="cyan">
+        <GlassCard className="p-6 sm:p-8 space-y-6 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm" glow="cyan">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-accent-cyan/20 flex items-center justify-center text-accent-cyan">
+              <div className="w-10 h-10 rounded-2xl bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
                 <Laptop className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-base text-slate-100">NEXUS Desktop Companion Agent</h3>
-                <span className="text-xs text-accent-emerald font-semibold flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
+                <h3 className="font-bold text-base text-slate-900 dark:text-slate-100">NEXUS Desktop Companion Agent</h3>
+                <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   Electron Agent Gateway Active
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
               The Desktop Agent runs quietly in your Windows system tray. It receives real-time WebSocket signals and raises native Windows toast notifications when workload conflicts or upcoming project deadlines are detected—even if this website is closed.
             </p>
 
-            <div className="p-4 rounded-2xl bg-black/40 border border-white/10 space-y-2 text-xs text-slate-300 font-mono">
-              <span className="text-accent-cyan block font-bold">To launch desktop agent locally:</span>
-              <p className="text-slate-400">npm run dev:desktop</p>
+            <div className="p-4 rounded-2xl bg-slate-100 dark:bg-black/40 border border-slate-200 dark:border-white/10 space-y-2 text-xs text-slate-800 dark:text-slate-300 font-mono">
+              <span className="text-cyan-700 dark:text-cyan-400 block font-bold">To launch desktop agent locally:</span>
+              <p className="text-slate-600 dark:text-slate-400">npm run dev:desktop</p>
             </div>
           </div>
         </GlassCard>
@@ -255,11 +255,11 @@ export const SettingsPage: React.FC = () => {
 
       {/* Tab: Privacy & Data Export */}
       {activeTab === 'privacy' && (
-        <GlassCard className="p-6 sm:p-8 space-y-6">
+        <GlassCard className="p-6 sm:p-8 space-y-6 bg-white/90 dark:bg-nexus-900/60 border border-slate-200/80 dark:border-white/10 shadow-sm">
           <div className="space-y-6">
             <div className="space-y-2">
-              <h3 className="text-sm font-bold text-slate-100">Export Your Personal Data</h3>
-              <p className="text-xs text-slate-400">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">Export Your Personal Data</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
                 Download a complete, structured JSON archive of all your tasks, goals, projects, calendar events, notes, and decisions.
               </p>
               <GlassButton
@@ -272,9 +272,9 @@ export const SettingsPage: React.FC = () => {
               </GlassButton>
             </div>
 
-            <div className="pt-6 border-t border-accent-rose/20 space-y-3">
-              <h3 className="text-sm font-bold text-accent-rose">Danger Zone: Delete Account</h3>
-              <p className="text-xs text-slate-400">
+            <div className="pt-6 border-t border-rose-200 dark:border-rose-500/20 space-y-3">
+              <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400">Danger Zone: Delete Account</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
                 Permanently purge your account, database records, and indexed personal memory documents. This cannot be undone.
               </p>
               <GlassButton
